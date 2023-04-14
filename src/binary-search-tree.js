@@ -14,12 +14,12 @@ class BinarySearchTree {
 
   add(data) {
     this.treeRoot = addValue(this.treeRoot, data);
-    function addValue(node,value)
+    function addValue(node,data)
     {
-      if (!node){ return new Node(value);}
-      if (node.value == value) {return node;}
-      if (value < node.value) { node.left = addValue(node.left, value);}
-      if (value > node.value) { node.right = addValue(node.right, value);}
+      if (!node){ return new Node(data);}
+      if (node.data == data) {return node;}
+      if (data < node.data) { node.left = addValue(node.left, data);}
+      if (data > node.data) { node.right = addValue(node.right, data);}
       return node;
     }
   }
@@ -27,33 +27,33 @@ class BinarySearchTree {
 
   has(data) {
     return searchValue(this.treeRoot, data);
-    function searchValue(node, value)
+    function searchValue(node, data)
     {
       if (!node){ return false;}
-      if (node.value === value) {return true;}
-      if (value < node.value) { return searchValue(node.left, value);}
-      if (value > node.value) { return searchValue(node.right, value);}
+      if (node.data === data) {return true;}
+      if (data < node.data) { return searchValue(node.left, data);}
+      if (data > node.data) { return searchValue(node.right, data);}
     }
   }
 
   find(data) {
-    return searchValue(this.treeRoot, data);
-    function searchValue(node, value)
+    return findValue(this.treeRoot, data);
+    function findValue(node, data)
     {
       if (!node){ return null;}
-      if (node.value === value) {return node;}
-      if (value < node.value) { return searchValue(node.left, value);}
-      if (value > node.value) { return searchValue(node.right, value);}
+      if (node.data === data) {return node;}
+      if (data < node.data) { return findValue(node.left, data);}
+      if (data > node.data) { return findValue(node.right, data);}
     }
   }
 
   remove(data) {
     this.treeRoot = removeValue(this.treeRoot, data);
-    function removeValue(node,value)
+    function removeValue(node,data)
     {
       if (!node){ return null;}
-      if (value < node.value) { node.left = removeValue(node.left, value); return node;}
-      else if (value > node.value) { node.right = removeValue(node.right, value); return node;}
+      if (data < node.data) { node.left = removeValue(node.left, data); return node;}
+      else if (data > node.data) { node.right = removeValue(node.right, data); return node;}
       else 
       {
         if (!node.left && !node.right) {return null;}
@@ -65,8 +65,8 @@ class BinarySearchTree {
         {
           minFromRight = minFromRight.left;
         }
-        node.value = minFromRight.value;
-        node.right = removeValue(node.right, minFromRight.value);
+        node.data = minFromRight.data;
+        node.right = removeValue(node.right, minFromRight.data);
         return node;
       }
     }
@@ -79,7 +79,7 @@ class BinarySearchTree {
     {
       node = node.left;
     }
-    return node.value;
+    return node.data;
   }
 
   max() {
@@ -89,7 +89,7 @@ class BinarySearchTree {
     {
       node = node.right;
     }
-    return node.value;
+    return node.data;
   }
 }
 
